@@ -1,5 +1,6 @@
 .SignIn > form {
     color: E9DAD9;
+    
 }
 .SingIn {
     padding: 5% 20% 5% 20% ;
@@ -19,13 +20,15 @@ input,textarea{
     width: 70%;
     margin-left: 10%;
     border: none;
+    height: 40%;
 }
 
 h1{
     text-align: center ;
-    text-shadow:2px 2px 2px  black;
+    /* text-shadow:2px 2px 2px  black;
     color: white;
-    display:"inline-block";
+    display:"inline-block"; */
+    color: black;
 }
 
 .btn button{
