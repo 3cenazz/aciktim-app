@@ -2,7 +2,7 @@
     color: E9DAD9;
 }
 .SingIn {
-    padding: 50px 300px 50px 300px;
+    padding: 5% 20% 5% 20% ;
 }
 
 form {
@@ -12,12 +12,13 @@ form {
 
 .Item{
     font-weight: bold;
-    margin-left: 50px;
+    margin-left: 10%;
 }
 
 input,textarea{
-    width: 300px;
-    margin-left: 50px;
+    width: 70%;
+    margin-left: 10%;
+    border: none;
 }
 
 h1{
@@ -28,7 +29,8 @@ h1{
 }
 
 .btn button{
-    margin-left: 50px;
+    margin-left: 40%;
+    width: 100%;
     background-color: white;
     border: none;
     /* Diğer stil ayarları */
@@ -39,6 +41,6 @@ h1{
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    padding-top: 50px;
-    padding-bottom: 30px;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
