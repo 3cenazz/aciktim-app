@@ -1,24 +1,29 @@
 import React, {useState} from 'react'
-import Logo from '../images/icon.png'
+
 import {Link} from 'react-router-dom' 
 import '../styles/Navbar.css'
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import LunchDiningIcon from '@mui/icons-material/LunchDining';
 
 
 function Navbar() {
 
   return (
     <div className='navbar'>
-        <p>ACIKTIM!</p>
-        <div className='leftSide'>          
-            <img src={Logo} />        
-        </div>
-     
-        <div className='rightSide'>
-            <Link to="/menü"> MENÜ </Link>
-            <Link to="/giriş"> GİRİŞ </Link>
-            <Link to="/sepetim"> SEPETİM </Link>
+      <div className="row">
+          <div className="col">
+            <text>ACIKTIM!</text>
+            <text> <LunchDiningIcon /> </text>   
+          </div>
+      </div>
+              
+          <div className="col"> 
+              <Link to="/menü"> MENÜ </Link>
+              <Link to="/giriş"> GİRİŞ </Link>
+              <Link to="/sepetim"> <ShoppingBasketIcon /> </Link>
            
-        </div>
+          </div>
+       
     </div>
   
   )
