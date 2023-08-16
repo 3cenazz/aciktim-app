@@ -16,11 +16,18 @@ form {
     margin-left: 10%;
 }
 
-input,textarea{
+input,label, textarea{
     width: 70%;
     margin-left: 10%;
-    border: none;
-    height: 40%;
+    border: none;    
+}
+
+input,label{
+    height: 40px;
+}
+
+textarea {
+    height: 60%;
 }
 
 h1{
@@ -36,7 +43,7 @@ h1{
     width: 100%;
     background-color: white;
     border: none;
-    /* Diğer stil ayarları */
+    font-weight: bold;
 }
 
 .image {
@@ -46,4 +53,17 @@ h1{
     margin: 0 auto;
     padding-top: 5%;
     padding-bottom: 5%;
+}
+
+.error {
+    color: red;
+}
+
+.eyeBtn {
+    background-color: rgba(233, 218, 217, 0.56);
+    border: none;
+}
+
+.eye:hover {
+    color: white;
 }
