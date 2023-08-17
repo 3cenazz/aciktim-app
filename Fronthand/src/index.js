@@ -5,10 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
-import {store} from "./redux/store"
+import { store } from "./redux/store"
 
+import Modal from 'react-modal';
+import 'alertifyjs/build/css/alertify.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Uygulama kök div öğesini seçiyoruz
+const rootElement = document.getElementById('root');
+
+// Modal için app elementini belirliyoruz
+Modal.setAppElement(rootElement);
+
 root.render(
   // <React.StrictMode>
   //   <Provider  store={store}>
@@ -16,11 +25,11 @@ root.render(
   //   </Provider>  
   // </React.StrictMode>
 
-<React.StrictMode>
+  <React.StrictMode>
 
-  <App />
+    <App />
 
-</React.StrictMode>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
