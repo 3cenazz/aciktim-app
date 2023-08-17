@@ -103,7 +103,7 @@ function SignIn() {
 
     return (
         <div>
-            {/* <Navbar /> */}
+            <Navbar />
 
             <div className='SingIn'>
 

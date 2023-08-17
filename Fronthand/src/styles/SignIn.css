@@ -6,31 +6,31 @@
     padding: 5% 20% 5% 20% ;
 }
 
-form {
+.SingIn form {
     background-color: rgba(233, 218, 217, 0.56);
     align-items: center;
 }
 
-.Item{
+.SingIn .Item{
     font-weight: bold;
     margin-left: 10%;
 }
 
-input,label, textarea{
+.SingIn input,label, textarea{
     width: 70%;
     margin-left: 10%;
     border: none;    
 }
 
-input,label{
+.SingIn input,label{
     height: 40px;
 }
 
-textarea {
+.SingIn textarea {
     height: 60%;
 }
 
-h1{
+.SingIn h1{
     text-align: center ;
     /* text-shadow:2px 2px 2px  black;
     color: white;
@@ -38,7 +38,7 @@ h1{
     color: black;
 }
 
-.btn button{
+.SingIn .btn button{
     margin-left: 40%;
     width: 100%;
     background-color: white;
@@ -46,7 +46,7 @@ h1{
     font-weight: bold;
 }
 
-.image {
+.SingIn .image {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,15 +55,15 @@ h1{
     padding-bottom: 5%;
 }
 
-.error {
+.SingIn .error {
     color: red;
 }
 
-.eyeBtn {
+.SingIn .eyeBtn {
     background-color: rgba(233, 218, 217, 0.56);
     border: none;
 }
 
-.eye:hover {
+.SingIn .eye:hover {
     color: white;
 }
