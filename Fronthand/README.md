@@ -1,3 +1,7 @@
+# Creating the Draft for Website
+
+https://www.figma.com/file/UJ8l9wJ22S5zYZv945tsd5/App-Project-Draft?type=design&node-id=121-2&mode=design&t=W6dAoZImEF5MeOXN-0
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
