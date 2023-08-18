@@ -4,6 +4,8 @@ import Modal from "react-modal";
 import "../styles/CartSummary.css"
 import alertify from "alertifyjs"
 
+import { useSelector } from "react-redux"
+
 function CartSummary({ products, isOpen, closeModal }) {
 
     const handleCompleteOrder = () => {
@@ -11,6 +13,8 @@ function CartSummary({ products, isOpen, closeModal }) {
         closeModal()    // Bunu Ana Sayfaya git ile değiştir
         // SEPETİ BOŞALT
       };
+
+      const currentUser = useSelector((state) => state.user.currentUser)
 
     return (
         <div>
@@ -46,10 +50,10 @@ function CartSummary({ products, isOpen, closeModal }) {
                     </table>
 
                     <h4>ADRES</h4>
-                    <p>Adres: 1234 Sokak No: 56, Örnek Mahallesi, Test Şehri, Örnek Ülke</p>
+                    <p>{currentUser.address}</p>
 
                     <h4>İLETİŞİM</h4>
-                    <p>0555 123 45 67</p>
+                    <p>{currentUser.phoneNumber}</p>
 
                     <h4>ÖDEME SEÇENEĞİ</h4>
                     <select name='payment' >
