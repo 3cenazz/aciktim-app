@@ -39,11 +39,18 @@
 }
 
 .SingIn .btn button{
-    margin-left: 40%;
-    width: 100%;
     background-color: white;
     border: none;
     font-weight: bold;
+    margin: 0% 80% 3% 4%;
+    
+}
+
+.SingIn .btn {
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    border: none;
 }
 
 .SingIn .image {

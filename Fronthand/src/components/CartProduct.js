@@ -3,7 +3,11 @@ import "../styles/CartProduct.css"
 
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function Product({ product }) {
+import {useDispatch} from "react-redux"
+import { increment, decrement, removeProduct } from '../redux/cartSlice'
+
+function CartProduct({ product }) {
+  const dispatch = useDispatch()
 
   return (
     <div className='CartProduct'>
@@ -45,7 +49,7 @@ function Product({ product }) {
 
               <div className="top-right">
                 <div className='button'>
-                  <button className='trashBtn'> 
+                  <button className='trashBtn' onClick={() => dispatch(removeProduct({id: product.id}))}> 
                     <DeleteIcon className='trash'/> 
                   </button>
                 </div>
@@ -54,11 +58,11 @@ function Product({ product }) {
               <div className="productDetail">{product.description}</div>
 
               <div className="bottom-left">
-                <button>-</button> | {product.number} | <button>+</button>
+                <button onClick={() => dispatch(decrement({id: product.id}))}>-</button> | {product.number} | <button onClick={() => dispatch(increment({id: product.id}))}>+</button>
               </div>
               
               <div className="bottom-right">
-                <h4 className='price'>{product.price} TL</h4>
+                <h4 className='price'>{(product.price * product.number)} TL</h4>
               </div>
             </div>
 
@@ -71,4 +75,4 @@ function Product({ product }) {
   )
 }
 
-export default Product
+export default CartProduct
