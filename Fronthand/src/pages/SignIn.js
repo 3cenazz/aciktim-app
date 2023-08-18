@@ -47,10 +47,10 @@ function SignIn() {
 
         // Tüm alanlar geçerliyse
         if (validFieldsCount === 6) {
-            
+
             dispatch(addUser({
                 name: name,
-                //userName: userName,
+                userName: userName,
                 email: email,
                 phoneNumber: phoneNumber,
                 password: password,
@@ -71,6 +71,8 @@ function SignIn() {
         // Gerekli alanlara uygun şekilde set işlemlerini yapın
         if (name === "name") {
             setName(value);
+        } else if (name === "userName") {
+            setEmail(value);
         } else if (name === "email") {
             setEmail(value);
         } else if (name === "phoneNumber") {
@@ -142,11 +144,11 @@ function SignIn() {
                             {errors.name && touched.name && <label className='error'>{errors.name}</label>}
                         </div>
 
-                        {/* <div className="col-md-6">
-        <label className="Item" htmlFor="userName">Kullanıcı Adı</label> <br></br>
-        <input name="userName" placeholder="Kullanıcı Adı" value={userName} onChange={(e) => setUserName(e.target.value)}/>
-            <br></br><br></br>
-        </div> */}
+                        <div className="col-md-6">
+                            <label className="Item" htmlFor="userName">Kullanıcı Adı</label> <br></br>
+                            <input name="userName" placeholder="Kullanıcı Adı" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                            {errors.userName && touched.userName && <label className='error'>{errors.userName}</label>}
+                        </div>
 
                         <div className="col-md-6">
                             <label className="Item" htmlFor="email">E-posta</label>  <br></br>

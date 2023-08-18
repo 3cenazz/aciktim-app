@@ -5,7 +5,8 @@ export const userSlice = createSlice({
     name: "user",       // key gibi
     initialState: {
         users: [{
-            name: "Ece",
+            name: "Ece En",
+            userName: "ece",
             email: "ece@gmail.com",
             phoneNumber: "05554443322",
             password: 12345,
@@ -13,7 +14,8 @@ export const userSlice = createSlice({
             id: 11,
         },
         {
-            name: "Naz",
+            name: "Naz Az",
+            userName: "naz",
             email: "naz@gmail.com",
             phoneNumber: "05554443322",
             password: 54321,
@@ -21,7 +23,8 @@ export const userSlice = createSlice({
             id:22,
         },
         {
-            name: "Zeynep",
+            name: "Zeynep Kız",
+            userName: "zeynep",
             email: "zeynep@gmail.com",
             phoneNumber: "05554443322",
             password: 11111,
@@ -29,7 +32,8 @@ export const userSlice = createSlice({
             id: 33,
         },
         {
-            name: "Mustafa",
+            name: "Mustafa Mun",
+            userName: "mustafa",
             email: "mustafa@gmail.com",
             phoneNumber: "05554443322",
             password: 989890,
