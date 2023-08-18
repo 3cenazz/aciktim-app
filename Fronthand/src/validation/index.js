@@ -2,6 +2,7 @@ import { object, string, ref } from 'yup';
 
 const validations = object({
     name: string().required("Lütfen ad ve soyadınızı giriniz."),
+    userName: string().required("Lütfen kullanıcı adı giriniz."),
     email: string().email("Lütfen geçerli bir e-posta adresi giriniz.").required("Lütfen e-posta adresinizi giriniz."),
     phoneNumber: string().required("Lütfen telefon numaranızı giriniz."),
     address: string().required("Lütfen adresinizi giriniz."),

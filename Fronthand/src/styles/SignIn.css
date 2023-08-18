@@ -17,7 +17,7 @@
 }
 
 .SingIn input,label, textarea{
-    width: 70%;
+    width: 75%;
     margin-left: 10%;
     border: none;    
 }
@@ -42,7 +42,7 @@
     background-color: white;
     border: none;
     font-weight: bold;
-    margin: 0% 80% 3% 4%;
+    margin: 0% 7% 3% 75%;
     
 }
 
