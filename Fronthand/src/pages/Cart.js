@@ -7,33 +7,13 @@ import "../styles/Cart.css"
 import { useState } from 'react'
 import CartSummary from '../components/CartSummary'
 
+import {useSelector} from "react-redux"
+
+
 function Cart() {
 
-  const products = [{
-    name: "Havyar",
-    number: 1,
-    image: "https://cdn.yemek.com/mncrop/620/388/uploads/2018/08/semizotlu-fellah-koftesi-yemekcom.jpg",
-    price: 80.5,
-    id:1,
-    description: "öçasmdçöas.dçasömd",
-  },
-  {
-    name: "Havyar",
-    number: 5,
-    image: "https://cdn.yemek.com/mncrop/620/388/uploads/2018/08/semizotlu-fellah-koftesi-yemekcom.jpg",
-    price: 80.5,
-    id:2,
-    description: ".,.,.,,.,.,",
-  },
-  {
-    name: "Havyar",
-    number: 3,
-    image: "https://cdn.yemek.com/mncrop/620/388/uploads/2018/08/semizotlu-fellah-koftesi-yemekcom.jpg",
-    price: 80.5,
-    id:3,
-    description: "39820*8490385934asndlkans",
-  }
-  ]
+  const products = useSelector((state) => state.cart.products)
+
   let total = 0
 
 
@@ -52,8 +32,8 @@ function Cart() {
       <Navbar />
 
       {products.map((product) => (
-        total += product.price,
-        <Product key={product.id} product={product} />
+        total += (product.price * product.number),
+        <Product key={product.id} product={product}/>
       ))}
 
     <div className='parts'>

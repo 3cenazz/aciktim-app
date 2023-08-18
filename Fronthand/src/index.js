@@ -19,17 +19,17 @@ const rootElement = document.getElementById('root');
 Modal.setAppElement(rootElement);
 
 root.render(
-  // <React.StrictMode>
-  //   <Provider  store={store}>
-  //     <App />
-  //   </Provider>  
-  // </React.StrictMode>
-
   <React.StrictMode>
-
-    <App />
-
+    <Provider  store={store}>
+      <App />
+    </Provider>  
   </React.StrictMode>
+
+  // <React.StrictMode>
+
+  //   <App />
+
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
