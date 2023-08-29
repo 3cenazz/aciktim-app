@@ -36,7 +36,7 @@ function App() {
         <Routes>
           {/* <Route exact path="/" element={<Home/>} /> */}
           <Route exact path="/" element={<MainPage/>} />
-          {/* <Route path="/giriş" exact element={<SignIn />} /> */}
+          <Route path="/kayıt" exact element={<SignIn />} />
           <Route path="/giriş" exact element={<LogIn/>} />
           <Route path="/profil"  element={redirectToSignInIfNotAllowed(<Profile />)} />
           <Route path="/sepetim" element={redirectToSignInIfNotAllowed(<Cart/>)} />
