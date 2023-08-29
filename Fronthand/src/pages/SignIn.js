@@ -9,7 +9,7 @@ import alertify from "alertifyjs"
 import validations from '../validation/index';
 
 import { useDispatch } from "react-redux"
-import { addUser } from '../redux/userSlice'
+import { addUser, getCurrentUser } from '../redux/userSlice'
 import { useSelector } from "react-redux"
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -17,8 +17,11 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import { nanoid } from "nanoid";
 
+import {useNavigate } from 'react-router-dom';
 
 function SignIn() {
+
+    const navigate = useNavigate();
 
     const [name, setName] = useState("")
     const [userName, setUserName] = useState("")
@@ -35,15 +38,17 @@ function SignIn() {
 
 
     const dispatch = useDispatch()
-    const currentUser = useSelector((state) => state.user.currentUser)
-    const users = useSelector((state) => state.user.users)
-    console.log(users)
+    // const currentUser = dispatch(getCurrentUser())
+    const index = useSelector((state) => state.user.currentUserIndex);
+    const users = useSelector((state) => state.user.users);
+    const currentUser = users[index]
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
         // Calculate the number of valid fields based on the absence of errors
         const validFieldsCount = Object.keys(errors).filter(fieldName => !errors[fieldName]).length;
-        { console.log(validFieldsCount) }
+       
 
         // Tüm alanlar geçerliyse
         if (validFieldsCount === 6) {
@@ -58,12 +63,22 @@ function SignIn() {
                 id: nanoid(),
             }))
 
-            console.log("Kullanıcı bilgileri:", currentUser);
+            console.log("Kullanıcı bilgileri:", currentUser, users);
 
             // Başarılı mesajını göster
             alertify.success("Kullanıcı başarıyla kaydedildi.");
+            
+            navigate("/");
+
+        } else {
+            alertify.error("İlgili alanları uygun bir şekilde doldurunuz.");
         }
     }
+
+    const handleCancel = (e) => {
+        alertify.success("Ana sayfa") 
+        navigate("/");
+    } 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -72,7 +87,7 @@ function SignIn() {
         if (name === "name") {
             setName(value);
         } else if (name === "userName") {
-            setEmail(value);
+            setUserName(value);
         } else if (name === "email") {
             setEmail(value);
         } else if (name === "phoneNumber") {
@@ -191,7 +206,7 @@ function SignIn() {
                         <div className='btn'>
                             <button type='submit' onClick={handleSubmit}>KAYIT OL</button>
 
-                            <button type="button" onClick={() => { alertify.success("Ana sayfa") }}>İPTAL</button>
+                            <button type="button" onClick={handleCancel}>İPTAL</button>
                         </div>
 
 
