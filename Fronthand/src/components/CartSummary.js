@@ -4,17 +4,28 @@ import Modal from "react-modal";
 import "../styles/CartSummary.css"
 import alertify from "alertifyjs"
 
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { getCurrentUser } from '../redux/userSlice';
+import { emptyCart } from '../redux/cartSlice';
+
+import { useNavigate } from 'react-router-dom';
 
 function CartSummary({ products, isOpen, closeModal }) {
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
+
     const handleCompleteOrder = () => {
         alertify.success("SİPARİŞİNİZ ALINMIŞTIR, AFİYET OLSUN :)",2)
-        closeModal()    // Bunu Ana Sayfaya git ile değiştir
+        //closeModal()    // Bunu Ana Sayfaya git ile değiştir
+        navigate("/");
         // SEPETİ BOŞALT
+        dispatch(emptyCart())
       };
 
-      const currentUser = useSelector((state) => state.user.currentUser)
+      const index = useSelector((state) => state.user.currentUserIndex);
+      const users = useSelector((state) => state.user.users);
+      const currentUser = users[index]
 
     return (
         <div>

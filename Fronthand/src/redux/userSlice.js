@@ -1,5 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, current } from "@reduxjs/toolkit"
 import alertify from "alertifyjs";
+import woman from "../images/Woman.png"
+import woman2 from "../images/Woman2.png"
+import man from "../images/Man.png"
+import man2 from "../images/Man2.png"
 
 export const userSlice = createSlice({
     name: "user",       // key gibi
@@ -12,6 +16,7 @@ export const userSlice = createSlice({
             password: 12345,
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
             id: 11,
+            profile: woman,
         },
         {
             name: "Naz Az",
@@ -20,7 +25,8 @@ export const userSlice = createSlice({
             phoneNumber: "05554443322",
             password: 54321,
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
-            id:22,
+            id: 22,
+            profile: woman,
         },
         {
             name: "Zeynep Kız",
@@ -30,6 +36,7 @@ export const userSlice = createSlice({
             password: 11111,
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
             id: 33,
+            profile: woman2,
         },
         {
             name: "Mustafa Mun",
@@ -39,9 +46,10 @@ export const userSlice = createSlice({
             password: 989890,
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
             id: 44,
-        },    
-    ],
-        currentUser : {},
+            profile: man,
+        },
+        ],
+        currentUserIndex: -1,
     },
     reducers: {              // update etmek için. Actions, fonksiyon
         addUser: (state, action) => {
@@ -49,10 +57,38 @@ export const userSlice = createSlice({
             return {
                 ...state,
                 users: [...state.users, action.payload],
-                currentUser: { ...action.payload },
+                //currentUser: { ...action.payload },
+                //currentUserIndex : state.users.findIndex(user => user.id === action.payload.id),
+                currentUserIndex: state.users.length // Güncel kullanıcı index'i
             };
         },
+
+        logOut: (state) => {
+            return {
+                ...state,
+                currentUserIndex: -1,
+            }
+        },
+
+        update: (state, action) => {
+
+            const updatedUsers = state.users.map((user, index) => {
+                if (index === state.currentUserIndex) {
+                    return {
+                        ...user,
+                        ...action.payload
+                    };
+                }
+                return user;
+            });
+    
+            return {
+                ...state,
+                users: updatedUsers
+            };
+        },
+
     }
 })
-export const { addUser } = userSlice.actions      // fonksiyonları dışarı aktarır
+export const { addUser, logOut, update } = userSlice.actions      // fonksiyonları dışarı aktarır
 export default userSlice.reducer

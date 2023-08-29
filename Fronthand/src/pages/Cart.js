@@ -9,8 +9,11 @@ import CartSummary from '../components/CartSummary'
 
 import {useSelector} from "react-redux"
 
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
+
+  const navigate = useNavigate();
 
   const products = useSelector((state) => state.cart.products)
 
@@ -43,7 +46,7 @@ function Cart() {
               <h2>Toplam : {total} TL </h2>
             </div>
             <div className="col-md-2">
-                <button>İPTAL</button>             
+                <button onClick={() => navigate("/")}>İPTAL</button>             
             </div>
         </div>
       </div>               

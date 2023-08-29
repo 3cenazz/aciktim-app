@@ -57,7 +57,11 @@ export const cartSlice = createSlice({
             state.products = state.products.filter(product => product.id !== id);
             alertify.success(`${removedProduct.name} sepetten silindi`,2)
         },
+
+        emptyCart: (state) => {
+            state.products = []
+        }
     }
 })
-export const { increment, decrement, removeProduct } = cartSlice.actions      // fonksiyonları dışarı aktarır
+export const { increment, decrement, removeProduct, emptyCart } = cartSlice.actions      // fonksiyonları dışarı aktarır
 export default cartSlice.reducer
