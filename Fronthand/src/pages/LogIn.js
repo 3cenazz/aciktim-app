@@ -6,7 +6,10 @@ import React, { useState } from 'react';
 import "../styles/LogIn.css"
 import { useDispatch } from 'react-redux';
 
-
+import { logIn } from '../redux/userSlice'
+import { useSelector } from "react-redux"
+import { useNavigate } from 'react-router-dom';
+import alertify from 'alertifyjs';
 
 function LogIn() {
  
@@ -14,16 +17,31 @@ function LogIn() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
+  const index = useSelector((state) => state.user.currentUserIndex);
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(
-        LogIn({
+        logIn({
         email:email,
         password:password,
-        loggedIn:true,
     }))
+    
+    if(index !== -1){
+        console.log("index ", index)
+        navigate("/")
+    }
   }
-  
+
+  const handleNavigate = () => {
+    navigate("/kayıt")
+  }
+
+  const handleMessage = () => {
+    alertify.success("Şifre yenilemek için mail gönderildi, lütfen mail kutunuzu kontrol ediniz.")
+  }
 
   
       
@@ -60,9 +78,11 @@ function LogIn() {
 
                 <div className="col-md-3 mx-auto">
                     <div className='btn'>
-                        <button type='submit'className='giris'> Giriş </button>
+                        <button type='submit'className='giris' onClick={handleSubmit}> Giriş </button>
                         <br></br><br />
-                        <button className='d-flex' >şifremi unuttum</button>
+                        <button type="button" className='d-flex' onClick={handleMessage}>şifremi unuttum</button>
+                        <br></br>
+                        <button type="button" className='d-flex' onClick={handleNavigate}>Hesabım yok</button>
                      
                     </div>
                 </div>

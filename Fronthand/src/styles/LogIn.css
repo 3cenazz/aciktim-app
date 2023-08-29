@@ -1,13 +1,13 @@
-.SignUp > form {
+.LogIn .SignUp > form {
     color: E9DAD9;
     
 }
-.SignUp {
+.LogIn .SignUp {
     padding: 5% 20% 5% 20% ;
     
 }
 
-form {
+.LogIn form {
     background-color: rgba(233, 218, 217, 0.56);
     border-radius: 70px;
     width: 50%;
@@ -20,13 +20,15 @@ form {
    
 }
 
-.Item{
+.LogIn .Item{
     font-weight: bold;
     margin-left: 10%;
    
 }
 
-input,label, text{
+.LogIn input,
+.LogIn label,
+.LogIn text{
     width: 70%;
     margin-left: 10%;
     border: none;   
@@ -38,7 +40,7 @@ input,label, text{
 }
 
 
-h1{
+.LogIn h1{
     text-align: center ;
     color: black;
 }
@@ -46,7 +48,7 @@ h1{
 
 
 
-.btn button{
+.LogIn .btn button{
 
     width: 100%;
     background-color:white;
@@ -62,7 +64,7 @@ h1{
   
 }
 
-.image {
+.LogIn .image {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +74,7 @@ h1{
     width: 20%;
 }
 
-.burger{
+.LogIn .burger{
     
     width: 98%;
 }

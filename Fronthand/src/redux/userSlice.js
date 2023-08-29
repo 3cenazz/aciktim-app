@@ -13,7 +13,7 @@ export const userSlice = createSlice({
             userName: "ece",
             email: "ece@gmail.com",
             phoneNumber: "05554443322",
-            password: 12345,
+            password: "12345",
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
             id: 11,
             profile: woman,
@@ -23,7 +23,7 @@ export const userSlice = createSlice({
             userName: "naz",
             email: "naz@gmail.com",
             phoneNumber: "05554443322",
-            password: 54321,
+            password: "54321",
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
             id: 22,
             profile: woman,
@@ -33,7 +33,7 @@ export const userSlice = createSlice({
             userName: "zeynep",
             email: "zeynep@gmail.com",
             phoneNumber: "05554443322",
-            password: 11111,
+            password: "11111",
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
             id: 33,
             profile: woman2,
@@ -43,7 +43,7 @@ export const userSlice = createSlice({
             userName: "mustafa",
             email: "mustafa@gmail.com",
             phoneNumber: "05554443322",
-            password: 989890,
+            password: "989890",
             address: "mahalle, cadde, sokak, mevki, apartman numarası / daire numarası, İlçe/İl ",
             id: 44,
             profile: man,
@@ -71,7 +71,6 @@ export const userSlice = createSlice({
         },
 
         update: (state, action) => {
-
             const updatedUsers = state.users.map((user, index) => {
                 if (index === state.currentUserIndex) {
                     return {
@@ -81,17 +80,35 @@ export const userSlice = createSlice({
                 }
                 return user;
             });
-    
+
             return {
                 ...state,
                 users: updatedUsers
             };
         },
 
-        logIn:(state, action) => {
-            state.user = action.payload;
-        },
-    }
-})
+        logIn: (state, action) => {
+            { console.log(action.payload) }
+            const userIndex = state.users.findIndex(user => user.email === action.payload.email);
+
+            if (userIndex !== -1) {
+                { console.log(action.payload)}
+                if (state.users[userIndex].password === action.payload.password) {
+                    return {
+                        ...state,
+                        currentUserIndex: userIndex,
+                    };
+                } else {
+                    alertify.error("Yanlış şifre!");
+                }
+            } else {
+                alertify.error("Geçerli bir kullanıcı girin.");
+                // sayfayı yenile?
+                //window.location.reload()
+            }
+        }
+    },
+}
+)
 export const { addUser, logOut, update, logIn } = userSlice.actions      // fonksiyonları dışarı aktarır
 export default userSlice.reducer
