@@ -4,13 +4,15 @@ import './App.css';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
 import Profile from './pages/Profile';
-import Home from './pages/Home';
+
 //import SignUp from './pages/SignUp';
 
 import { useSelector } from "react-redux";
 
 import {useNavigate } from 'react-router-dom';
 import alertify from 'alertifyjs';
+import MainPage from './pages/MainPage';
+import LogIn from './pages/LogIn';
 
 function App() {
   
@@ -32,8 +34,10 @@ function App() {
         {/* <SignIn/> */}
         
         <Routes>
-          <Route exact path="/" element={<Home/>} />
-          <Route path="/giriş" exact element={<SignIn />} />
+          {/* <Route exact path="/" element={<Home/>} /> */}
+          <Route exact path="/" element={<MainPage/>} />
+          {/* <Route path="/giriş" exact element={<SignIn />} /> */}
+          <Route path="/giriş" exact element={<LogIn/>} />
           <Route path="/profil"  element={redirectToSignInIfNotAllowed(<Profile />)} />
           <Route path="/sepetim" element={redirectToSignInIfNotAllowed(<Cart/>)} />
         </Routes>

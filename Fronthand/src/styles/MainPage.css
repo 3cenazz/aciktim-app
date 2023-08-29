@@ -1,0 +1,29 @@
+.MainPage {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.MainPage .row {
+  padding:  1% 5% 1% 5% ;
+  color: rgba(220, 87, 87, 1);
+  font-size:x-large;
+}
+
+.halalmeat {
+  width: 100%;
+  height: auto; 
+}
+
+.burgers {
+width: 100%;
+height: auto; 
+ 
+}
+
