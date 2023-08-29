@@ -10,6 +10,8 @@ import { logIn } from '../redux/userSlice'
 import { useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom';
 import alertify from 'alertifyjs';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function LogIn() {
  
@@ -47,7 +49,7 @@ function LogIn() {
       
   return (
     <div>
-      
+      <Navbar />
     <br></br><br></br>
     <div className='LogIn'>
         <h1 >Üye Girişi</h1>
@@ -92,7 +94,7 @@ function LogIn() {
         
         </form>
     </div>
- 
+    <Footer />
 </div>
   );
 }

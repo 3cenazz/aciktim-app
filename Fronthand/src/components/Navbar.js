@@ -10,12 +10,19 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useDispatch, useSelector } from "react-redux"
 import woman from "../images/Woman.png"
 import { getCurrentUser } from '../redux/userSlice';
+import alertify from 'alertifyjs';
 
 function Navbar() {
 
   const dispatch = useDispatch()
   const currentUserIndex = useSelector((state) => state.user.currentUserIndex); 
   console.log("cuuurennnnt",currentUserIndex)
+
+  const handleClick = () => {
+    if (currentUserIndex === -1) {
+      alertify.error("Önce giriş yapınız!");
+    } 
+  };
 
   return (
     <div className='navbar'>
@@ -33,7 +40,7 @@ function Navbar() {
               ? <Link to="/profil" className='link'>  <img src={woman} alt="Profile" className='logo' /> PROFİL </Link>
               : <Link to="/giriş" className='link'>  <AccountCircleIcon className='logo'/> GİRİŞ </Link>}
               
-              <Link to="/sepetim" className='link'> <ShoppingBasketIcon className='logo'/> SEPET </Link>
+              <Link to="/sepetim" onClick={handleClick} className='link'> <ShoppingBasketIcon className='logo'/> SEPET </Link>
             </div>
           </div>
        
