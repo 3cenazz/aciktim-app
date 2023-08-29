@@ -88,7 +88,10 @@ export const userSlice = createSlice({
             };
         },
 
+        logIn:(state, action) => {
+            state.user = action.payload;
+        },
     }
 })
-export const { addUser, logOut, update } = userSlice.actions      // fonksiyonları dışarı aktarır
+export const { addUser, logOut, update, logIn } = userSlice.actions      // fonksiyonları dışarı aktarır
 export default userSlice.reducer
