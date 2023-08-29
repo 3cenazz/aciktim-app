@@ -17,16 +17,18 @@ import LogIn from './pages/LogIn';
 function App() {
   
   const index = useSelector((state) => state.user.currentUserIndex);
+ 
 
   // Sepete girişi engellendiğinde kullanıcıyı başka bir sayfaya yönlendir
   const redirectToSignInIfNotAllowed = (page) => {
     if (index === -1) {
       //alertify.error("Önce giriş yapınız.")
-      return <SignIn />;
+      return <LogIn />;
     }
     return page;
   };
 
+  
 
   return (
     <div>
@@ -39,7 +41,7 @@ function App() {
           <Route path="/kayıt" exact element={<SignIn />} />
           <Route path="/giriş" exact element={<LogIn/>} />
           <Route path="/profil"  element={redirectToSignInIfNotAllowed(<Profile />)} />
-          <Route path="/sepetim" element={redirectToSignInIfNotAllowed(<Cart/>)} />
+          <Route path="/sepetim" element={redirectToSignInIfNotAllowed(<Cart/>)}/>
         </Routes>
       </BrowserRouter>
     </div>
