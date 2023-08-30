@@ -42,7 +42,8 @@ function LogIn() {
   }
 
   const handleMessage = () => {
-    alertify.success("Şifre yenilemek için mail gönderildi, lütfen mail kutunuzu kontrol ediniz.")
+    //alertify.success("Şifre yenilemek için mail gönderildi, lütfen mail kutunuzu kontrol ediniz.")
+    navigate("/sifremiunuttum")
   }
 
   
