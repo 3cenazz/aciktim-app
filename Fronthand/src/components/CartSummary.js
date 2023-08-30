@@ -10,7 +10,7 @@ import { emptyCart } from '../redux/cartSlice';
 
 import { useNavigate } from 'react-router-dom';
 
-function CartSummary({ products, isOpen, closeModal }) {
+function CartSummary({ products, isOpen, closeModal, total }) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -58,8 +58,16 @@ function CartSummary({ products, isOpen, closeModal }) {
                             ))}
 
                         </tbody>
-                    </table>
 
+                        <thead>
+                            <tr>
+                                <th>TOPLAM :   </th>
+                                <th></th>
+                                <th>{total} TL</th>
+                            </tr>
+                        </thead>
+                    </table>
+                                
                     <h4>ADRES</h4>
                     <p>{currentUser.address}</p>
 
