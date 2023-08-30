@@ -53,7 +53,7 @@ function Cart() {
 
         <button onClick={handleOpenModal} >Satın Al</button>
 
-        <CartSummary isOpen={modalIsOpen} closeModal={handleCloseModal} products = {products} />
+        <CartSummary isOpen={modalIsOpen} closeModal={handleCloseModal} products = {products} total={total}/>
     </div>
 
       <Footer />

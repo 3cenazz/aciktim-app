@@ -48,7 +48,6 @@ export const cartSlice = createSlice({
                     cartSlice.caseReducers.removeProduct(state, removeAction); // removeProduct eylemi kullanılıyor
 
                 }
-
             }
         },
         removeProduct: (state, action) => {
