@@ -11,17 +11,18 @@
   padding-left: 1%;
   color: rgba(220, 87, 87, 1);
   font-size: xxx-large;
-
 }
+
 
 .navbar .aciktim {
   display: flex;
   align-items: center;
+  font-size: 50px;
+  text-decoration: none; /* Altı çizgiyi kaldırma */
 }
 
 .navbar .burger {
   font-size: 100px;
-  
 }
 
 .navbar a {

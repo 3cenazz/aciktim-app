@@ -13,6 +13,8 @@ import {useNavigate } from 'react-router-dom';
 import alertify from 'alertifyjs';
 import MainPage from './pages/MainPage';
 import LogIn from './pages/LogIn';
+import Menu from './pages/Menu';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   
@@ -40,6 +42,8 @@ function App() {
           <Route exact path="/" element={<MainPage/>} />
           <Route path="/kayıt" exact element={<SignIn />} />
           <Route path="/giriş" exact element={<LogIn/>} />
+          <Route path="/sifremiunuttum" element={<ForgotPassword />} />
+          <Route path="/menü" exact element={<Menu />} />
           <Route path="/profil"  element={redirectToSignInIfNotAllowed(<Profile />)} />
           <Route path="/sepetim" element={redirectToSignInIfNotAllowed(<Cart/>)}/>
         </Routes>

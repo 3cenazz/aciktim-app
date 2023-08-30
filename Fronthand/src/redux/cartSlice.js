@@ -55,13 +55,45 @@ export const cartSlice = createSlice({
             const { id } = action.payload;
             const removedProduct = state.products.find(product => product.id === id);
             state.products = state.products.filter(product => product.id !== id);
-            alertify.success(`${removedProduct.name} sepetten silindi`,2)
+            alertify.success(`${removedProduct.name} sepetten silindi`, 2)
         },
 
         emptyCart: (state) => {
             state.products = []
-        }
+        },
+
+        //   MENÜ
+        addToCart: (state, action) => {
+            const item = action.payload;
+            const existingItem = state.products.find((product) => product.id === item.id);
+
+            if (existingItem) {
+                existingItem.number += 1;
+            } else {
+                state.products.push({ ...item, number: 1 });
+            }
+        },
+        removeFromCart: (state, action) => {
+            const itemId = action.payload;
+            state.products = state.products.filter((product) => product.id !== itemId);
+        },
+        incrementItem: (state, action) => {
+            const itemId = action.payload;
+            const item = state.products.find((product) => product.id === itemId);
+            if (item) {
+                item.number += 1;
+            }
+        },
+        decrementItem: (state, action) => {
+            const itemId = action.payload;
+            const item = state.products.find((product) => product.id === itemId);
+            if (item) {
+                if (item.number > 1) {
+                    item.number -= 1;
+                }
+            }
+        },
     }
 })
-export const { increment, decrement, removeProduct, emptyCart } = cartSlice.actions      // fonksiyonları dışarı aktarır
+export const { increment, decrement, removeProduct, emptyCart, addToCart, removeFromCart, incrementItem, decrementItem } = cartSlice.actions      // fonksiyonları dışarı aktarır
 export default cartSlice.reducer
