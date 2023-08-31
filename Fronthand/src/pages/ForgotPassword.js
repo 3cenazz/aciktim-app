@@ -11,6 +11,7 @@ import Button from "@mui/joy/Button";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+import img from "../images/logo.png"
 export default function ForgotPassword() {
 
   const navigate = useNavigate()
@@ -66,7 +67,7 @@ export default function ForgotPassword() {
             <div className="d-flex justify-content-center align-items-start mt-3">
               <div className="logo mb-3">
                 <img
-                  src="./images/logo.png"
+                  src= {img}
                   className="img-fluid logo-img"
                   alt="---"
                 />
