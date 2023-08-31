@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import img from "../images/logo.png"
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 export default function ForgotPassword() {
 
   const navigate = useNavigate()
@@ -61,6 +63,7 @@ export default function ForgotPassword() {
   
   return (
     <div>
+      <Navbar />
       <Container className="center-container">
         <Card className="custom-card " sx={{ backgroundColor: "#E9DAD9" }}>
           <form onSubmit={handleSubmit} id="demo">
@@ -163,6 +166,8 @@ export default function ForgotPassword() {
           </form>
         </Card>
       </Container>
+      
+      <Footer />
     </div>
   );
 }
