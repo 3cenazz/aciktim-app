@@ -110,5 +110,6 @@ export const userSlice = createSlice({
     },
 }
 )
+export const selectUsers = (state) => state.user.users;
 export const { addUser, logOut, update, logIn } = userSlice.actions      // fonksiyonları dışarı aktarır
 export default userSlice.reducer

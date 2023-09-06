@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Stack from "@mui/joy/Stack";
 import "../styles/ForgotPassword.css";
 import Container from "react-bootstrap/Container";
@@ -9,27 +9,28 @@ import FormHelperText from "@mui/joy/FormHelperText";
 import Button from "@mui/joy/Button";
 import { toast } from "react-toastify";
 import TextField from '@mui/material/TextField';
-
-import logo from "../images/logo.png"
+import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import logo from "../images/logo.png"
+
 
 export default function ForgotPassword() {
-  const [data, setData] = React.useState({
+    const navigate = useNavigate();
+  const [data, setData] = useState({
     email: "",
     status: "initial",
-    errorMessage: "", 
+    errorMessage: "",
   });
-
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   const isEmailValid = (email) => {
     return emailRegex.test(email);
   };
-
+  const users = useSelector((state) => state.user.users);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // E-posta formatını kontrol et
+   
     if (!isEmailValid(data.email)) {
       setData({ ...data, status: "failure", errorMessage: "Geçersiz e-posta formatı" });
       return;
@@ -37,38 +38,28 @@ export default function ForgotPassword() {
 
     setData((current) => ({ ...current, status: "loading" }));
 
-    try {
-      const response = await fetch("/api/eposta", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: data.email }),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        if (responseData.success) {
-          setData({ email: "", status: "sent", errorMessage: "" });
-        } else {
-          setData({ ...data, status: "failure", errorMessage: "Böyle bir eposta bulunamadı" });
-        }
-      } else {
-        setData({ ...data, status: "failure", errorMessage: "Bir hata oluştu" });
-      }
-    } catch (error) {
-      setData({ ...data, status: "failure", errorMessage: "Bir hata oluştu" });
+    if (!isEmailValid(data.email)) {
+      setData({ ...data, status: "failure", errorMessage: "Geçersiz e-posta formatı" });
+      return;
     }
-  };
 
-  const handleButtonClick = () => {
-    if (data.status === "failure") {
-      setData({ ...data, status: "initial", errorMessage: "" });
+    const user = users.find((user) => user.email === data.email);
+
+    if (user) {
+      toast.success("Doğrulama maili gönderildi giriş sayfasına",{
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 500,
+        
+      })
+      setTimeout(() => {
+        navigate("/giriş");
+      }, 1500);
+      setData({ email: "", status: "sent", errorMessage: "" });
     }
-  };
-
-  const handleSuccessClick = () => {
-    toast.success("İşlem başarılı");
+    else {
+      setData({ ...data, status: "failure", errorMessage: "Böyle bir eposta bulunamadı" });
+    }
+   
   };
 
   return (
@@ -101,7 +92,7 @@ export default function ForgotPassword() {
                     id="standard-size-normal"
                     defaultValue="Normal"
                     variant="standard"
-                    maxRows={8}
+                    maxRows={5}
                     className=""
                     placeholder="mail@gmail.com"
                     name="email"
@@ -115,7 +106,6 @@ export default function ForgotPassword() {
 
                   <Button
                     variant="solid"
-                    loading={data.status === "loading"}
                     type="submit"
                     sx={{
                       borderTopLeftRadius: "5px",
@@ -125,7 +115,7 @@ export default function ForgotPassword() {
                       top: "100px",
                       backgroundColor: "#f0ad4e",
                     }}
-                    onClick={handleButtonClick}
+                    
                   >
                     Gönder
                   </Button>
@@ -141,7 +131,7 @@ export default function ForgotPassword() {
 
                   {data.status === "sent" && (
                     <FormHelperText
-                      onClick={handleSuccessClick}
+                      
                       sx={(theme) => ({
                         color: theme.vars.palette.primary[400],
                       })}
