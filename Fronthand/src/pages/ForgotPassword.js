@@ -1,5 +1,4 @@
 import React from "react";
-import Input from "@mui/joy/Input";
 import Stack from "@mui/joy/Stack";
 import "../styles/ForgotPassword.css";
 import Container from "react-bootstrap/Container";
@@ -9,21 +8,32 @@ import FormLabel from "@mui/joy/FormLabel";
 import FormHelperText from "@mui/joy/FormHelperText";
 import Button from "@mui/joy/Button";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import TextField from '@mui/material/TextField';
 
-import img from "../images/logo.png"
+import logo from "../images/logo.png"
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-export default function ForgotPassword() {
 
-  const navigate = useNavigate()
+export default function ForgotPassword() {
   const [data, setData] = React.useState({
     email: "",
     status: "initial",
+    errorMessage: "", 
   });
+
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const isEmailValid = (email) => {
+    return emailRegex.test(email);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // E-posta formatını kontrol et
+    if (!isEmailValid(data.email)) {
+      setData({ ...data, status: "failure", errorMessage: "Geçersiz e-posta formatı" });
+      return;
+    }
 
     setData((current) => ({ ...current, status: "loading" }));
 
@@ -39,28 +49,28 @@ export default function ForgotPassword() {
       if (response.ok) {
         const responseData = await response.json();
         if (responseData.success) {
-          setData({ email: "", status: "sent" });
+          setData({ email: "", status: "sent", errorMessage: "" });
         } else {
-          setData({ ...data, status: "failure" });
+          setData({ ...data, status: "failure", errorMessage: "Böyle bir eposta bulunamadı" });
         }
       } else {
-        setData({ ...data, status: "failure" });
+        setData({ ...data, status: "failure", errorMessage: "Bir hata oluştu" });
       }
     } catch (error) {
-      setData({ ...data, status: "failure" });
+      setData({ ...data, status: "failure", errorMessage: "Bir hata oluştu" });
     }
   };
 
   const handleButtonClick = () => {
     if (data.status === "failure") {
-      setData({ ...data, status: "initial" });
+      setData({ ...data, status: "initial", errorMessage: "" });
     }
   };
+
   const handleSuccessClick = () => {
-    toast.success("işlem başarılı");
-    navigate("/")
+    toast.success("İşlem başarılı");
   };
-  
+
   return (
     <div>
       <Navbar />
@@ -70,7 +80,7 @@ export default function ForgotPassword() {
             <div className="d-flex justify-content-center align-items-start mt-3">
               <div className="logo mb-3">
                 <img
-                  src= {img}
+                  src={logo}
                   className="img-fluid logo-img"
                   alt="---"
                 />
@@ -82,44 +92,23 @@ export default function ForgotPassword() {
                 sx={(theme) => ({
                   "--FormLabel-color": theme.vars.palette.primary.plainColor,
                 })}
-              >
-                E-posta{" "}
-              </FormLabel>
+              ></FormLabel>
 
               <div className="login-form">
                 <Stack>
-                  <Input
-                    sx={{
-                      "--Input-radius": "0px",
-                      borderBottom: "2px solid",
-                      borderColor: "neutral.outlinedBorder",
-                      "&:hover": {
-                        borderColor: "neutral.outlinedHoverBorder",
-                      },
-                      "&::before": {
-                        border: "1px solid var(--Input-focusedHighlight)",
-                        transform: "scaleX(0)",
-                        left: 0,
-                        right: 0,
-                        bottom: "-2px",
-                        top: "unset",
-                        transition:
-                          "transform .15s cubic-bezier(0.1,0.9,0.2,1)",
-                        borderRadius: 0,
-                      },
-                      "&:focus-within::before": {
-                        transform: "scaleX(1)",
-                      },
-                    }}
+                  <TextField
+                    label="E-Posta"
+                    id="standard-size-normal"
+                    defaultValue="Normal"
+                    variant="standard"
+                    maxRows={8}
                     className=""
                     placeholder="mail@gmail.com"
-                    variant="soft"
                     name="email"
-                    type="email"
                     required
                     value={data.email}
                     onChange={(event) =>
-                      setData({ email: event.target.value, status: "initial" })
+                      setData({ email: event.target.value, status: "initial", errorMessage: "" })
                     }
                     error={data.status === "failure"}
                   />
@@ -146,13 +135,13 @@ export default function ForgotPassword() {
                         color: theme.vars.palette.danger[400],
                       })}
                     >
-                      Böyle bir eposta bulunamadı
+                      {data.errorMessage}
                     </FormHelperText>
                   )}
 
                   {data.status === "sent" && (
                     <FormHelperText
-                    onClick={handleSuccessClick}
+                      onClick={handleSuccessClick}
                       sx={(theme) => ({
                         color: theme.vars.palette.primary[400],
                       })}
@@ -166,8 +155,185 @@ export default function ForgotPassword() {
           </form>
         </Card>
       </Container>
-      
+
       <Footer />
     </div>
   );
 }
+
+
+
+
+// import React from "react";
+// import Input from "@mui/joy/Input";
+// import Stack from "@mui/joy/Stack";
+// import "../styles/ForgotPassword.css";
+// import Container from "react-bootstrap/Container";
+// import Card from "@mui/material/Card";
+// import FormControl from "@mui/joy/FormControl";
+// import FormLabel from "@mui/joy/FormLabel";
+// import FormHelperText from "@mui/joy/FormHelperText";
+// import Button from "@mui/joy/Button";
+// import { toast } from "react-toastify";
+// import { useNavigate } from "react-router-dom";
+
+// import img from "../images/logo.png"
+// import Navbar from "../components/Navbar";
+// import Footer from "../components/Footer";
+// export default function ForgotPassword() {
+
+//   const navigate = useNavigate()
+//   const [data, setData] = React.useState({
+//     email: "",
+//     status: "initial",
+//   });
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     setData((current) => ({ ...current, status: "loading" }));
+
+//     try {
+//       const response = await fetch("/api/eposta", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ email: data.email }),
+//       });
+
+//       if (response.ok) {
+//         const responseData = await response.json();
+//         if (responseData.success) {
+//           setData({ email: "", status: "sent" });
+//         } else {
+//           setData({ ...data, status: "failure" });
+//         }
+//       } else {
+//         setData({ ...data, status: "failure" });
+//       }
+//     } catch (error) {
+//       setData({ ...data, status: "failure" });
+//     }
+//   };
+
+//   const handleButtonClick = () => {
+//     if (data.status === "failure") {
+//       setData({ ...data, status: "initial" });
+//     }
+//   };
+//   const handleSuccessClick = () => {
+//     toast.success("işlem başarılı");
+//     navigate("/")
+//   };
+  
+//   return (
+//     <div>
+//       <Navbar />
+//       <Container className="center-container">
+//         <Card className="custom-card " sx={{ backgroundColor: "#E9DAD9" }}>
+//           <form onSubmit={handleSubmit} id="demo">
+//             <div className="d-flex justify-content-center align-items-start mt-3">
+//               <div className="logo mb-3">
+//                 <img
+//                   src= {img}
+//                   className="img-fluid logo-img"
+//                   alt="---"
+//                 />
+//               </div>
+//             </div>
+
+//             <FormControl>
+//               <FormLabel
+//                 sx={(theme) => ({
+//                   "--FormLabel-color": theme.vars.palette.primary.plainColor,
+//                 })}
+//               >
+//                 E-posta{" "}
+//               </FormLabel>
+
+//               <div className="login-form">
+//                 <Stack>
+//                   <Input
+//                     sx={{
+//                       "--Input-radius": "0px",
+//                       borderBottom: "2px solid",
+//                       borderColor: "neutral.outlinedBorder",
+//                       "&:hover": {
+//                         borderColor: "neutral.outlinedHoverBorder",
+//                       },
+//                       "&::before": {
+//                         border: "1px solid var(--Input-focusedHighlight)",
+//                         transform: "scaleX(0)",
+//                         left: 0,
+//                         right: 0,
+//                         bottom: "-2px",
+//                         top: "unset",
+//                         transition:
+//                           "transform .15s cubic-bezier(0.1,0.9,0.2,1)",
+//                         borderRadius: 0,
+//                       },
+//                       "&:focus-within::before": {
+//                         transform: "scaleX(1)",
+//                       },
+//                     }}
+//                     className=""
+//                     placeholder="mail@gmail.com"
+//                     variant="soft"
+//                     name="email"
+//                     type="email"
+//                     required
+//                     value={data.email}
+//                     onChange={(event) =>
+//                       setData({ email: event.target.value, status: "initial" })
+//                     }
+//                     error={data.status === "failure"}
+//                   />
+
+//                   <Button
+//                     variant="solid"
+//                     loading={data.status === "loading"}
+//                     type="submit"
+//                     sx={{
+//                       borderTopLeftRadius: "5px",
+//                       borderBottomLeftRadius: "5px",
+//                       position: "absolute",
+//                       right: "0",
+//                       top: "100px",
+//                       backgroundColor: "#f0ad4e",
+//                     }}
+//                     onClick={handleButtonClick}
+//                   >
+//                     Gönder
+//                   </Button>
+//                   {data.status === "failure" && (
+//                     <FormHelperText
+//                       sx={(theme) => ({
+//                         color: theme.vars.palette.danger[400],
+//                       })}
+//                     >
+//                       Böyle bir eposta bulunamadı
+//                     </FormHelperText>
+//                   )}
+
+//                   {data.status === "sent" && (
+//                     <FormHelperText
+//                     onClick={handleSuccessClick}
+//                       sx={(theme) => ({
+//                         color: theme.vars.palette.primary[400],
+//                       })}
+//                     >
+//                       İşlem Başarılı
+//                     </FormHelperText>
+//                   )}
+//                 </Stack>
+//               </div>
+//             </FormControl>
+//           </form>
+//         </Card>
+//       </Container>
+      
+//       <Footer />
+//     </div>
+//   );
+// }
