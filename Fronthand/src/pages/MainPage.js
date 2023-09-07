@@ -1,128 +1,126 @@
-import halalmeat from '../images/halalmeat.png'
-import one from '../images/one.jpeg'
-import two from '../images/two.jpeg'
-import three from '../images/three.jpeg'
-import four from '../images/four.jpeg'
-import five from '../images/five.jpeg'
-import React from 'react'
+import React from 'react';
+import menuItems from "../components/Products";
+import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from "react-redux";
+import { useCartActions } from "../components/addActions";
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Row from "react-bootstrap/Row";
+import Typography from "@mui/material/Typography";
 import "../styles/MainPage.css"
-import { useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.min.css";
+import CardMedia from "@mui/material/CardMedia";
+import halalmeat from '../images/halalmeat.png'
 
-
-
-const product = [
-  {
-    id: 1,
-    name: "menü1",
-    price: 100,
-    image:one},
-
-  
-  
-   { id: 2,
-    name: "menü2",
-    price: 100,
-    image:two},
-
-  
-  
-   { id: 3,
-    name: "menü3",
-    price: 100,
-    image:three},
-
-  
-  
-    {id: 4,
-    name: "menü4",
-    price: 100,
-    image:four},
-
-  
-  
-    {id: 5,
-    name: "menü5",
-    price: 100,
-    image:five}
-  ]
-
-
+import one from '../images/one.jpeg';
+import two from '../images/two.jpeg';
+import three from '../images/three.jpeg';
+import four from '../images/four.jpeg';
+import five from '../images/five.jpeg';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import { red } from '@mui/material/colors';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 function MainPage() {
-   
-  const [cartItems, setCartItems] = useState([]);
+  const cart = useSelector((state) => state.cart.products);
+  const { handleAddToCart, handleRemoveFromCart } = useCartActions();
 
-  const handleOrder = () => {
-  
-    const newCartItems = [...cartItems, product];
-    
 
-    setCartItems(newCartItems);
-    
-  
-    alert("Ürün sepete eklendi!");
-  };
-  
-  
   return (
     <div>
-      <Navbar/>
+      <Navbar />
+      
     <div className="home">
-     
-        <div className="halalmeat" >
-          <img src={halalmeat} className='halalmeat' />
-        
-        </div>
-
+        <img src={halalmeat} className='halalmeat' />
+      <div className="full">
         <div className='red'>
-            <h1 className='h'>EN ÇOK SATANLAR!</h1>
-         </div> 
-
-         <div className="product-list">
-            {product.map(product => (
-            <div key={product.id} className='btn'>
-                <img src={product.image} alt={product.name} />
-                <button type='button' className='order-button' onClick={() => handleOrder(product)}>SİPARİŞ VER</button>
-            </div>
-            ))}
-          </div>
-
-
-      
-
-        <div className='full'>
-            <div style={{ display: 'flex' }} className='numbers'>
-            
-                <img src={one} className='n' style={{ width: '15%', height: 'auto' }}/>
-          
-                <img src={two} style={{ width: '15%', height: 'auto' }}/>
-      
-                <img src={three} style={{ width: '15%', height: 'auto' }}/>
-       
-                <img src={four} style={{ width: '15%', height: 'auto' }}/>
-            
-                <img src={five}style={{ width: '10%', height: 'auto' }}/>
-       
-            </div> 
-
-            <div className='menü-names' style={{ display: 'flex', flexDirection: 'row'}}>
-            {product.map(product => (
-            <p key={product.id} id={product.id}>{product.name} - {product.price}tl</p>
-            ))}
-            </div>
-
-             
-
-            
+           <h1 className='h'>
+                ÇOK SATANLAR!
+            </h1>  
         </div>
-           
-     
+       
+        <div style={{ display: 'flex' }} className="numbers">
+          <img src={one} className="n" style={{ width: '14%', height: 'auto' }} /> 
+          <img src={two} style={{ width: '14%', height: 'auto' }} />
+          <img src={three} style={{ width: '14%', height: 'auto' }} />
+          <img src={four} style={{ width: '14%', height: 'auto' }} />
+          <img src={five} style={{ width: '14%', height: 'auto' }} />
+         
+          
+        </div>
+    
+        
+        
+      <Row className="justify-content-center text-center  ">
+        {menuItems.slice(0, 5).map((item, index) => (
+         
+            <Card
+            key={index}
+            sx={{ maxWidth: 250, backgroundColor: "#FCCB4C",margin: "0 auto" }}
+          >
+            <Typography
+              gutterBottom
+              variant="h5"
+              color="red"
+              component="div"
+              className="fw-bold"
+            >
+              {item.name}
+            </Typography>
+         
+           <Typography 
+           color="red" 
+           class="fw-bold"
+           gutterBottom>
+            
+              Fiyat:
+            </Typography>
+            <Typography 
+            color="red" 
+            class="fw-bold" 
+            gutterBottom>
+              ₺ {item.price.toFixed(2)}
+            </Typography>
+             
+                
+        
+
+              <CardActions sx={{ justifyContent: "flex-end" }}>
+                {cart.some((cartItem) => cartItem.id === item.id) ? (
+                  <Button
+               
+                    onClick={() => handleRemoveFromCart(item)}
+                  >
+                    Sepetten Çıkar
+                  </Button>
+                ) : (
+                  <Button onClick={() => handleAddToCart(item)}>
+                    Sepete Ekle
+                  </Button>
+                )}
+                <ToastContainer autoClose={1000} />
+              </CardActions>
+            </Card>
+         
+        ))}
+      </Row>
+          
+        
+                
+          
+      
+      </div>
+
+        <Footer />
+      </div>
     </div>
-    <Footer/>
-    </div>
-  ) 
+  );
 }
 
-export default MainPage
+export default MainPage;
