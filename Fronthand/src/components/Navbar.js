@@ -16,8 +16,7 @@ function Navbar() {
 
   const dispatch = useDispatch()
   const currentUserIndex = useSelector((state) => state.user.currentUserIndex);
-  console.log("cuuurennnnt", currentUserIndex)
-
+  
   const handleClick = () => {
     if (currentUserIndex === -1) {
       alertify.error("Önce giriş yapınız!");

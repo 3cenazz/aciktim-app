@@ -8,10 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Row from "react-bootstrap/Row";
 import Typography from "@mui/material/Typography";
 import "../styles/MainPage.css"
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import CardMedia from "@mui/material/CardMedia";
+
 import halalmeat from '../images/halalmeat.png'
 
 import one from '../images/one.jpeg';
@@ -21,11 +21,12 @@ import four from '../images/four.jpeg';
 import five from '../images/five.jpeg';
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
+
 import Button from "@mui/material/Button";
-import { red } from '@mui/material/colors';
-import Footer from '../components/Footer';
+
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+
 
 function MainPage() {
   const cart = useSelector((state) => state.cart.products);
@@ -35,7 +36,6 @@ function MainPage() {
   return (
     <div>
       <Navbar />
-      
     <div className="home">
         <img src={halalmeat} className='halalmeat' />
       <div className="full">
@@ -55,14 +55,12 @@ function MainPage() {
           
         </div>
     
-        
-        
       <Row className="justify-content-center text-center  ">
-        {menuItems.slice(0, 5).map((item, index) => (
-         
+        {menuItems.slice(0,5).map((item, index) => (
+       
             <Card
             key={index}
-            sx={{ maxWidth: 250, backgroundColor: "#FCCB4C",margin: "0 auto" }}
+            sx={{ maxWidth: '15%', backgroundColor: "#FCCB4C",margin: "0 auto" }}
           >
             <Typography
               gutterBottom
@@ -76,15 +74,13 @@ function MainPage() {
          
            <Typography 
            color="red" 
-           class="fw-bold"
-           gutterBottom>
+           class="fw-bold">
             
               Fiyat:
             </Typography>
             <Typography 
             color="red" 
-            class="fw-bold" 
-            gutterBottom>
+            class="fw-bold" >
               ₺ {item.price.toFixed(2)}
             </Typography>
              
@@ -107,17 +103,16 @@ function MainPage() {
                 <ToastContainer autoClose={1000} />
               </CardActions>
             </Card>
-         
+        
         ))}
       </Row>
           
-        
+     
                 
           
       
       </div>
-
-        <Footer />
+      <Footer />
       </div>
     </div>
   );
