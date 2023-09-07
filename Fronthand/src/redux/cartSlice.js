@@ -9,7 +9,7 @@ export const cartSlice = createSlice({
             number: 1,
             image: "https://cdn.yemek.com/mncrop/620/388/uploads/2018/08/semizotlu-fellah-koftesi-yemekcom.jpg",
             price: 80.5,
-            id: 1,
+            id: 13,
             description: "öçasmdçöas.dçasömd",
         },
         {
@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
             number: 5,
             image: "https://cdn.yemek.com/mncrop/620/388/uploads/2018/08/semizotlu-fellah-koftesi-yemekcom.jpg",
             price: 80.5,
-            id: 2,
+            id: 14,
             description: ".,.,.,,.,.,",
         },
         {
@@ -25,7 +25,7 @@ export const cartSlice = createSlice({
             number: 3,
             image: "https://cdn.yemek.com/mncrop/620/388/uploads/2018/08/semizotlu-fellah-koftesi-yemekcom.jpg",
             price: 80.5,
-            id: 3,
+            id: 15,
             description: "39820*8490385934asndlkans",
         }],
     },
