@@ -1,61 +1,57 @@
 .home .MainPage {
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: column;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .home .halalmeat {
-  width: 100%;
-  height: auto; 
+width: 100%;
+height: auto; 
 }
 
 
 .home .red {
 
-  text-shadow: 0px 0px 10px white;
- 
- font-weight: bold;
+text-shadow: 0px 0px 10px white;
+
+font-weight: bold;
 } 
+
 .home .numbers{
- 
-  width: 100%;
-  height: auto;
-  gap: 7%; 
+
+width: 100%;
+height: auto;
+gap: 7%; 
 
 }
+
 .home{
 
-  border-color: rgba(220, 87, 87, 1)red  ;
-  border-width:5px ;
- 
+border-color: rgba(220, 87, 87, 1)red  ;
+border-width:5px ;
+
 }
 
 .home .btn{
-  display: flex;
-  gap: 12%; 
-  font-size: large;
-  
+display: flex;
+gap: 12%; 
+font-size: large;
+
 }
 
 
 
 .home .h{
-  color:rgba(220, 87, 87, 1);
-  background-color: rgba(252, 203, 76, 1);
-  padding: 5px 5px 2px 2px; 
-  background-size: 50% 100%;
-  font-size: xxx-large;
-}
-
-.home .row {
-  display: flex;
-  flex-wrap: nowrap; /* Ensure that cards don't wrap to the next line */
-  overflow-x: auto;   /* Add horizontal scroll if necessary */
+color:rgba(220, 87, 87, 1);
+background-color: rgba(252, 203, 76, 1);
+padding: 5px 5px 2px 2px; 
+background-size: 50% 100%;
+font-size: xxx-large;
 }
