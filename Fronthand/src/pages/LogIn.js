@@ -85,8 +85,9 @@ function LogIn() {
                         <br></br><br />
                         <button type="button" className='d-flex' onClick={handleMessage}>şifremi unuttum</button>
                         <br></br>
-                        <button type="button" className='d-flex' onClick={handleNavigate}>Hesabım yok</button>
-                     
+                        <button type="button" className='d-flex' onClick={handleNavigate} >Hesabım yok</button>
+                        
+
                     </div>
                 </div>
 

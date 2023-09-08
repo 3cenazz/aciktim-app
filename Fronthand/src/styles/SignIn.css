@@ -9,6 +9,7 @@
 .SingIn form {
     background-color: rgba(233, 218, 217, 0.56);
     align-items: center;
+    border-radius: 50px;
 }
 
 .SingIn .Item{
@@ -21,7 +22,8 @@
 .SingIn textarea{
     width: 75%;
     margin-left: 10%;
-    border: none;    
+    border: none;  
+    border-radius: 20px;
 }
 
 .SingIn input,label{
@@ -45,7 +47,7 @@
     border: none;
     font-weight: bold;
     margin: 0% 7% 3% 75%;
-    
+    border-radius: 20px;
 }
 
 .SingIn .btn {
