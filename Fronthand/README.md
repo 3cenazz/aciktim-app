@@ -36,6 +36,9 @@ These techniques collectively contributed to the efficiency, scalability, and us
 
 The format is classifying code, for instance, the “pages” folder includes completed version of the pages used on the website. The “components” folder created to keep common web page elements and joint coded. Almost every page had a header and footer, so to prevent rewriting same code in every page, we wrote them in a “components” folder once and used the file in the pages by importing. In the “styles” folder there were CSS format of pages and components. With the “redux” folder, we saved redux operations which are slicers for pages and store. The “images” folder kept pictures for using in pages and components. Lastly, the “services” folder was for the api file, and the “validation” folder was for checking inputs. 
 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
